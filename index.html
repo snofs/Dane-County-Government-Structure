@@ -27,7 +27,12 @@
             padding: 20px;
             color: #333;
         }
-        
+        .selected-supervisor {
+  background-color: #3498db !important;
+  color: white !important;
+  border-color: #2980b9 !important;
+}
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -2184,17 +2189,29 @@ function renderSupervisorList() {
 }
 
 function selectSupervisor(district, name) {
-    document.getElementById("draft-supervisor").textContent = name;
-    document.getElementById("draft-district").textContent = district;
-    document.getElementById("draft-letter-block").style.display = "block";
+  // Update draft content
+  document.getElementById("draft-supervisor").textContent = name;
+  document.getElementById("draft-district").textContent = district;
+  document.getElementById("draft-letter-block").style.display = "block";
 
-    // Also update Step 2 template
-    const draft2Name = document.getElementById("draft2-supervisor");
-    const draft2Dist = document.getElementById("draft2-district");
-    if (draft2Name) draft2Name.textContent = name;
-    if (draft2Dist) draft2Dist.textContent = district;
+  // Also update Step 2
+  const draft2Name = document.getElementById("draft2-supervisor");
+  const draft2Dist = document.getElementById("draft2-district");
+  if (draft2Name) draft2Name.textContent = name;
+  if (draft2Dist) draft2Dist.textContent = district;
+
+  // Highlight selected supervisor
+  document.querySelectorAll('#supervisor-select-list button').forEach(btn => {
+    btn.classList.remove('selected-supervisor');
+  });
+
+  const selectedButton = Array.from(document.querySelectorAll('#supervisor-select-list button'))
+    .find(btn => btn.innerText.includes(`District ${district}:`));
+    
+  if (selectedButton) {
+    selectedButton.classList.add('selected-supervisor');
+  }
 }
-
 // === Smooth Scroll ===
 document.addEventListener("DOMContentLoaded", function() {
     renderSupervisorList();
