@@ -2226,6 +2226,41 @@
                 });
             });
         });
+// === Supervisor Selector Script ===
+const supervisors = [
+  "Vacant", "Heidi Wegleitner", "Analiese Eicher", "Matt Veldran", "Henry Fries",
+  "Yogesh Chawla", "Erin Welsh", "Jeffrey Glazer", "Steven Peters", "Keith Furman",
+  "Richelle Andrae", "Tommy Rylander", "Jay Brower", "Anthony Gray", "April Kigeya (Vice Chair)",
+  "Rick Rose", "Dan Blazewicz", "Michele Ritt", "Brenda Yang", "Jeff Weigand",
+  "Jeffrey Kroning", "Maureen McCarville", "Chuck Erickson", "Sarah Smith", "David Boetcher",
+  "Lisa Jackson", "Kierstin Huelsemann", "Michele Doolan", "Don Postler", "Patrick Downing",
+  "Jerry Bollig", "Chad Kemp (Vice Chair)", "Randy Udell", "Patrick Miles (Board Chair)",
+  "Michael Engelberger", "David Peterson", "Kerry Marren"
+];
+
+function renderSupervisorList() {
+  const container = document.getElementById("supervisor-select-list");
+  if (!container) return;
+  container.innerHTML = '';
+  supervisors.forEach((name, index) => {
+    const button = document.createElement("button");
+    button.className = "action-btn secondary";
+    button.style.margin = "5px";
+    button.innerText = `District ${index + 1}: ${name}`;
+    button.onclick = () => selectSupervisor(index + 1, name);
+    container.appendChild(button);
+  });
+}
+
+function selectSupervisor(district, name) {
+  document.getElementById("draft-supervisor").textContent = name;
+  document.getElementById("draft-district").textContent = district;
+  document.getElementById("draft-letter-block").style.display = "block";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderSupervisorList();
+});
     </script>
 </body>
 </html>
