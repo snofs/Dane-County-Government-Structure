@@ -2170,62 +2170,45 @@
         
         // Predict Committee
         function predictCommittee(topic) {
-            const predictions = {
-                health: {
-                    primary: "Health & Human Needs (HHN)",
-                    secondary: ["Personnel & Finance", "Board of Health"],
-                    timeline: "45-60 days typical"
-                },
-                budget: {
-                    primary: "Personnel & Finance",
-                    secondary: ["Executive Committee", "Relevant program committee"],
-                    timeline: "Must align with budget cycle"
-                },
-                safety: {
-                    primary: "Public Protection & Judiciary",
-                    secondary: ["Personnel & Finance", "Executive"],
-                    timeline: "60-90 days typical"
-                },
-                environment: {
-                    primary: "Environment, Agriculture & Natural Resources",
-                    secondary: ["Zoning & Land Regulation", "Public Works"],
-                    timeline: "60-75 days typical"
-                },
-                transport: {
-                    primary: "Public Works & Transportation",
-                    secondary: ["Personnel & Finance", "Environment"],
-                    timeline: "45-90 days typical"
-                }
-            };
-            
-            const predDiv = document.getElementById('committee-prediction');
-            if (topic && predictions[topic]) {
-                const pred = predictions[topic];
-                predDiv.innerHTML = `
-                    <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
-                        <p><strong>Primary Committee:</strong> ${pred.primary}</p>
-                        <p><strong>Additional Committees:</strong> ${pred.secondary.join(', ')}</p>
-                        <p><strong>Typical Timeline:</strong> ${pred.timeline}</p>
-                        <p style="margin-top: 15px; padding: 15px; background: #e8f4f8; border-radius: 8px;">
-                            <strong>Tip:</strong> Contact the committee chair early to discuss your proposal and understand their priorities.
-                        </p>
-                    </div>
-                `;
-            }
+    const predictions = {
+        budget: { 
+            primary: "Personnel & Finance",
+            secondary: ["Executive Committee", "Relevant program committee"],
+            timeline: "Must align with budget cycle"
+        },
+        safety: {
+            primary: "Public Protection & Judiciary",
+            secondary: ["Personnel & Finance", "Executive"],
+            timeline: "60-90 days typical"
+        },
+        environment: {
+            primary: "Environment, Agriculture & Natural Resources",
+            secondary: ["Zoning & Land Regulation", "Public Works"],
+            timeline: "60-75 days typical"
+        },
+        transport: {
+            primary: "Public Works & Transportation",
+            secondary: ["Personnel & Finance", "Environment"],
+            timeline: "45-90 days typical"
         }
-        
-        // Initialize
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add smooth scrolling
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
+    };
+
+    const predDiv = document.getElementById('committee-prediction');
+    if (topic && predictions[topic]) {
+        const pred = predictions[topic];
+        predDiv.innerHTML = `
+            <div style="background: white; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                <p><strong>Primary Committee:</strong> ${pred.primary}</p>
+                <p><strong>Additional Committees:</strong> ${pred.secondary.join(', ')}</p>
+                <p><strong>Typical Timeline:</strong> ${pred.timeline}</p>
+                <p style="margin-top: 15px; padding: 15px; background: #e8f4f8; border-radius: 8px;">
+                    <strong>Tip:</strong> Contact the committee chair early to discuss your proposal and understand their priorities.
+                </p>
+            </div>
+        `;
+    }
+}
+
 // === Supervisor Selector Script ===
 const supervisors = [
   "Vacant", "Heidi Wegleitner", "Analiese Eicher", "Matt Veldran", "Henry Fries",
@@ -2239,28 +2222,45 @@ const supervisors = [
 ];
 
 function renderSupervisorList() {
-  const container = document.getElementById("supervisor-select-list");
-  if (!container) return;
-  container.innerHTML = '';
-  supervisors.forEach((name, index) => {
-    const button = document.createElement("button");
-    button.className = "action-btn secondary";
-    button.style.margin = "5px";
-    button.innerText = `District ${index + 1}: ${name}`;
-    button.onclick = () => selectSupervisor(index + 1, name);
-    container.appendChild(button);
-  });
+    const container = document.getElementById("supervisor-select-list");
+    if (!container) return;
+    container.innerHTML = '';
+    supervisors.forEach((name, index) => {
+        const button = document.createElement("button");
+        button.className = "action-btn secondary";
+        button.style.margin = "5px";
+        button.innerText = `District ${index + 1}: ${name}`;
+        button.onclick = () => selectSupervisor(index + 1, name);
+        container.appendChild(button);
+    });
 }
 
 function selectSupervisor(district, name) {
-  document.getElementById("draft-supervisor").textContent = name;
-  document.getElementById("draft-district").textContent = district;
-  document.getElementById("draft-letter-block").style.display = "block";
+    document.getElementById("draft-supervisor").textContent = name;
+    document.getElementById("draft-district").textContent = district;
+    document.getElementById("draft-letter-block").style.display = "block";
+
+    // Also update Step 2 template
+    const draft2Name = document.getElementById("draft2-supervisor");
+    const draft2Dist = document.getElementById("draft2-district");
+    if (draft2Name) draft2Name.textContent = name;
+    if (draft2Dist) draft2Dist.textContent = district;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderSupervisorList();
+// === Smooth Scroll ===
+document.addEventListener("DOMContentLoaded", function() {
+    renderSupervisorList();
+
+    // Add smooth scrolling for anchor links
+    document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
 });
-    </script>
+</script>
 </body>
 </html>
