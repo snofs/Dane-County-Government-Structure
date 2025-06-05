@@ -653,118 +653,47 @@
         </div>
      <!-- Start a Process Tab -->
 <div id="process" class="tab-content">
-  <title>Start a Legislative Process</title> 
-    <style>
-    .gov-option {
-      cursor: pointer;
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      background-color: #f4f4f4;
-    }
-    .tab-content {
-      margin-top: 20px;
-    }
-    .flow-step {
-      margin-bottom: 30px;
-      padding: 15px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-    }
-    .step-details {
-      display: none;
-      margin-top: 15px;
-      background: #eef2f5;
-      padding: 15px;
-      border-radius: 10px;
-    }
-    .action-btn {
-      padding: 10px;
-      margin: 5px 0;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .primary {
-      background-color: #3498db;
-      color: white;
-    }
-    .secondary {
-      background-color: #ccc;
-      color: #333;
-    }
-  </style>
-</head>
-<body>
+  <h2>Start a Legislative Process</h2>   
+    <p>Select which government you want to work with:</p>
 
-<h2>Select Your Government Type:</h2>
-<div class="gov-selector">
-  <div class="gov-option" onclick="selectGovernment('county')">
-    <h3>Dane County</h3>
-    <p>Work with the County Board and Corporation Counsel</p>
-  </div>
-  <div class="gov-option" onclick="selectGovernment('city')">
-    <h3>City of Madison</h3>
-    <p>Work with the Common Council and City Attorney</p>
-  </div>
-</div>
-
-<!-- COUNTY PROCESS -->
-<div id="county-process" class="tab-content" style="display: none;">
-  <h2>County Legislative Process</h2>
-
-  <!-- Step 1 -->
-  <div class="flow-step">
-    <h3>Step 1: Find a Sponsor</h3>
-    <p>Contact your supervisor to sponsor your proposal.</p>
-    <button class="action-btn primary" onclick="expandStep(this)">View Supervisor List</button>
-    <div class="step-details">
-      <p>Example supervisors here (could be buttons):</p>
-      <button class="action-btn secondary">District 1: Vacant</button>
-      <button class="action-btn secondary">District 2: Heidi Wegleitner</button>
-      <p>...and so on</p>
+  <div class="gov-selector">
+    <div class="gov-option county" onclick="selectGovernment('county')">
+      <h3>Dane County</h3>
+      <p>County-wide ordinances and policies</p>
+      <p><strong>Key Contact:</strong> County Board Office</p>
+    </div>
+    <div class="gov-option city" onclick="selectGovernment('city')">
+      <h3>City of Madison</h3>
+      <p>City ordinances and resolutions</p>
+      <p><strong>Key Contact:</strong> City Clerk's Office</p>
     </div>
   </div>
 
-  <!-- Step 2 -->
-  <div class="flow-step">
-    <h3>Step 2: Draft with Corporation Counsel</h3>
-    <p>Work with County legal staff to develop your ordinance/resolution.</p>
-    <div class="step-details">
-      <p><strong>Corporation Counsel:</strong> Carlos A. Pabellón</p>
-      <p>Room 419, City-County Building, Madison, WI</p>
+  <div id="county-process" class="process-flow">
+    <h3>County Legislative Process</h3>
+
+    <div class="flow-step current">
+      <span class="step-number">1</span>
+      <div class="step-header">
+        <h4 class="step-title">Find a Sponsor</h4>
+        <span class="step-status">Current Step</span>
+      </div>
+
+      <div class="step-content">
+        Contact your district supervisor or approach a committee chair. You'll need at least one supervisor to sponsor your proposal.
+      </div>
+
+      <div class="step-actions">
+        <button class="action-btn primary" onclick="expandStep(this)">View Supervisor List</button>
+        <button class="action-btn secondary" onclick="showScenario('no-sponsor')">What if no sponsor?</button>
+      </div>
+
+      <div class="step-details" style="display: none; margin-top: 20px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+        <h5>Interactive Supervisor Selector:</h5>
+        <div id="supervisor-select-list" style="margin-bottom: 30px;"></div>
+      </div>
     </div>
-  </div>
-</div>
 
-<!-- CITY PROCESS -->
-<div id="city-process" class="tab-content" style="display: none;">
-  <h2>City Legislative Process</h2>
-  <p>City process steps will go here.</p>
-</div>
-
-<script>
-  function selectGovernment(type) {
-    document.getElementById('county-process').style.display = 'none';
-    document.getElementById('city-process').style.display = 'none';
-
-    if (type === 'county') {
-      document.getElementById('county-process').style.display = 'block';
-    } else if (type === 'city') {
-      document.getElementById('city-process').style.display = 'block';
-    }
-  }
-
-  function expandStep(button) {
-    const details = button.closest('.flow-step').querySelector('.step-details');
-    const isOpen = details.style.display === 'block';
-    details.style.display = isOpen ? 'none' : 'block';
-    button.textContent = isOpen ? 'View Supervisor List' : 'Hide Supervisor List';
-    button.classList.toggle('secondary', !isOpen);
-    button.classList.toggle('primary', isOpen);
-  }
     <div class="flow-step">
       <span class="step-number">2</span>
       <div class="step-header">
@@ -1935,21 +1864,21 @@
     
     <script>
         // Tab Navigation
-  function showTab(tabId, button) {
-  // Hide all tab contents
-  document.querySelectorAll('.tab-content').forEach(tab => {
-    tab.style.display = 'none';
-  });
-
-  // Remove active class from all buttons
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-
-  // Show the selected tab
-  document.getElementById(tabId).style.display = 'block';
-  if (button) button.classList.add('active');
-}
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Mark button as active
+            event.target.classList.add('active');
+        }
         
         // Government Selection
         function selectGovernment(type) {
@@ -1995,22 +1924,17 @@
         }
         
         // Expand Step
-    function expandStep(button) {
-  const details = button.closest('.flow-step').querySelector('.step-details');
-
-  if (!details) return;
-
-  const isOpen = details.style.display === 'block';
-
-  // Toggle display
-  details.style.display = isOpen ? 'none' : 'block';
-
-  // Toggle button text and color
-  button.textContent = isOpen ? 'View Supervisor List' : 'Hide Supervisor List';
-  button.classList.toggle('secondary', !isOpen); // Add gray style when open
-  button.classList.toggle('primary', isOpen);    // Remove primary style when open
-}
-
+        function expandStep(button) {
+            const step = button.closest('.flow-step');
+            const details = step.querySelector('.step-details');
+            
+            if (details) {
+                if (details.style.display === 'none') {
+                    details.style.display = 'block';
+                    button.textContent = 'Hide Supervisor List';
+                } else {
+                    details.style.display = 'none';
+                    button.textContent = 'View Supervisor List';
                 }
             }
         }
