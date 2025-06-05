@@ -646,155 +646,103 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Start a Process Tab -->
-        <div id="process" class="tab-content">
-            <h2>Start a Legislative Process</h2>
-            <p>Select which government you want to work with:</p>
-            
-            <div class="gov-selector">
-                <div class="gov-option county" onclick="selectGovernment('county')">
-                    <h3>Dane County</h3>
-                    <p>County-wide ordinances and policies</p>
-                    <p><strong>Key Contact:</strong> County Board Office</p>
-                </div>
-                <div class="gov-option city" onclick="selectGovernment('city')">
-                    <h3>City of Madison</h3>
-                    <p>City ordinances and resolutions</p>
-                    <p><strong>Key Contact:</strong> City Clerk's Office</p>
-                </div>
-            </div>
-            
-            <div id="county-process" class="process-flow">
-                <h3>County Legislative Process</h3>
-                <div class="flow-step current">
-                    <span class="step-number">1</span>
-                    <div class="step-header">
-                        <h4 class="step-title">Find a Sponsor</h4>
-                        <span class="step-status">Current Step</span>
-                    </div>
-                    <div class="step-content">
-                        Contact your district supervisor or approach a committee chair. You'll need at least one supervisor to sponsor your proposal.
-                    </div>
-                    <div class="step-actions">
-                        <button class="action-btn primary" onclick="expandStep(this)">View Supervisor List</button>
-                        <button class="action-btn secondary" onclick="showScenario('no-sponsor')">What if no sponsor?</button>
-                    </div>
-                    <div class="step-details" style="display: none; margin-top: 20px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                        <h5 style="margin-bottom: 15px;">County Board Supervisors by District:</h5>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">
-                            <div><strong>District 1:</strong> Vacant</div>
-                            <div><strong>District 2:</strong> Heidi Wegleitner</div>
-                            <div><strong>District 3:</strong> Analiese Eicher</div>
-                            <div><strong>District 4:</strong> Matt Veldran</div>
-                            <div><strong>District 5:</strong> Henry Fries</div>
-                            <div><strong>District 6:</strong> Yogesh Chawla</div>
-                            <div><strong>District 7:</strong> Erin Welsh</div>
-                            <div><strong>District 8:</strong> Jeffrey Glazer</div>
-                            <div><strong>District 9:</strong> Steven Peters</div>
-                            <div><strong>District 10:</strong> Keith Furman</div>
-                            <div><strong>District 11:</strong> Richelle Andrae</div>
-                            <div><strong>District 12:</strong> Tommy Rylander</div>
-                            <div><strong>District 13:</strong> Jay Brower</div>
-                            <div><strong>District 14:</strong> Anthony Gray</div>
-                            <div><strong>District 15:</strong> April Kigeya (Vice Chair)</div>
-                            <div><strong>District 16:</strong> Rick Rose</div>
-                            <div><strong>District 17:</strong> Dan Blazewicz</div>
-                            <div><strong>District 18:</strong> Michele Ritt</div>
-                            <div><strong>District 19:</strong> Brenda Yang</div>
-                            <div><strong>District 20:</strong> Jeff Weigand</div>
-                            <div><strong>District 21:</strong> Jeffrey Kroning</div>
-                            <div><strong>District 22:</strong> Maureen McCarville</div>
-                            <div><strong>District 23:</strong> Chuck Erickson</div>
-                            <div><strong>District 24:</strong> Sarah Smith</div>
-                            <div><strong>District 25:</strong> David Boetcher</div>
-                            <div><strong>District 26:</strong> Lisa Jackson</div>
-                            <div><strong>District 27:</strong> Kierstin Huelsemann</div>
-                            <div><strong>District 28:</strong> Michele Doolan</div>
-                            <div><strong>District 29:</strong> Don Postler</div>
-                            <div><strong>District 30:</strong> Patrick Downing</div>
-                            <div><strong>District 31:</strong> Jerry Bollig</div>
-                            <div><strong>District 32:</strong> Chad Kemp (Vice Chair)</div>
-                            <div><strong>District 33:</strong> Randy Udell</div>
-                            <div><strong>District 34:</strong> Patrick Miles (Board Chair)</div>
-                            <div><strong>District 35:</strong> Michael Engelberger</div>
-                            <div><strong>District 36:</strong> David Peterson</div>
-                            <div><strong>District 37:</strong> Kerry Marren</div>
-                        </div>
-                        <p style="margin-top: 15px;"><strong>Tip:</strong> Start with your own district supervisor or approach committee chairs relevant to your issue. Committee chairs often have more influence in their subject areas.</p>
-                    </div>
-<!-- INTERACTIVE SELECTOR AND LETTER -->
-<div style="margin-top: 30px;">
-  <h5 style="margin-bottom: 15px;">Interactive Supervisor Selector:</h5>
-  <div id="supervisor-select-list" style="margin-bottom: 30px;"></div>
+     <!-- Start a Process Tab -->
+<div id="process" class="tab-content">
+  <h2>Start a Legislative Process</h2>   
+    <p>Select which government you want to work with:</p>
 
-  <div id="draft-letter-block" style="display: none; background: #fff; border-radius: 10px; border: 1px solid #ddd; padding: 20px;">
-    <h4>Draft Email to Corporation Counsel</h4>
-    <p>Dear Corporation Counsel Pabellón,</p>
-    <p>
-      I am working with Supervisor <strong><span id="draft-supervisor"></span></strong>
-      from District <strong><span id="draft-district"></span></strong> to draft an ordinance/resolution
-      regarding [brief description of issue].
-    </p>
-    <p>
-      The proposed legislation would:
-      <br> - [Key provision 1]
-      <br> - [Key provision 2]
-      <br> - [Key provision 3]
-    </p>
-    <p>
-      We would appreciate your assistance in drafting this legislation to ensure it meets all legal requirements
-      and is properly formatted for consideration by the County Board.
-    </p>
-    <p>
-      Please let me know what additional information you need and when we might schedule a meeting to discuss
-      this further.
-    </p>
-    <p>Thank you,<br>[Your Name]</p>
+  <div class="gov-selector">
+    <div class="gov-option county" onclick="selectGovernment('county')">
+      <h3>Dane County</h3>
+      <p>County-wide ordinances and policies</p>
+      <p><strong>Key Contact:</strong> County Board Office</p>
+    </div>
+    <div class="gov-option city" onclick="selectGovernment('city')">
+      <h3>City of Madison</h3>
+      <p>City ordinances and resolutions</p>
+      <p><strong>Key Contact:</strong> City Clerk's Office</p>
+    </div>
+  </div>
+
+  <div id="county-process" class="process-flow">
+    <h3>County Legislative Process</h3>
+
+    <div class="flow-step current">
+      <span class="step-number">1</span>
+      <div class="step-header">
+        <h4 class="step-title">Find a Sponsor</h4>
+        <span class="step-status">Current Step</span>
+      </div>
+
+      <div class="step-content">
+        Contact your district supervisor or approach a committee chair. You'll need at least one supervisor to sponsor your proposal.
+      </div>
+
+      <div class="step-actions">
+        <button class="action-btn primary" onclick="expandStep(this)">View Supervisor List</button>
+        <button class="action-btn secondary" onclick="showScenario('no-sponsor')">What if no sponsor?</button>
+      </div>
+
+      <div class="step-details" style="display: none; margin-top: 20px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+        <h5>Interactive Supervisor Selector:</h5>
+        <div id="supervisor-select-list" style="margin-bottom: 30px;"></div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <span class="step-number">2</span>
+      <div class="step-header">
+        <h4 class="step-title">Draft with Corporation Counsel</h4>
+        <span class="step-status">Upcoming</span>
+      </div>
+
+      <div class="step-content">
+        Work with the Corporation Counsel's office to draft proper legal language for your ordinance or resolution.
+      </div>
+
+      <div class="step-actions">
+        <button class="action-btn primary" onclick="showDraftingTemplate()">View Drafting Template</button>
+        <button class="action-btn secondary">Drafting Tips</button>
+      </div>
+
+      <div class="drafting-template" style="display: none; margin-top: 20px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
+        <h5>Corporation Counsel Contact:</h5>
+        <p><strong>Carlos A. Pabellón</strong><br>
+        Dane County Corporation Counsel<br>
+        Room 419, City-County Building<br>
+        210 Martin Luther King Jr. Blvd<br>
+        Madison, WI 53703<br>
+        Phone: (608) 266-4355</p>
+
+        <h5 style="margin-top: 20px;">Email Template:</h5>
+        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
+          <p><strong>Subject:</strong> Request for Legislative Drafting Assistance - [Your Topic]</p>
+          <p><strong>Dear Corporation Counsel Pabellón,</strong></p>
+          <p>I am working with Supervisor <strong><span id="draft2-supervisor">[Name]</span></strong> from District <strong><span id="draft2-district">[#]</span></strong> to draft a [ordinance/resolution] regarding [brief description of issue].</p>
+          <p>The proposed legislation would:</p>
+          <ul>
+            <li>[Key provision 1]</li>
+            <li>[Key provision 2]</li>
+            <li>[Key provision 3]</li>
+          </ul>
+          <p>We would appreciate your assistance in drafting this legislation to ensure it meets all legal requirements and is properly formatted for consideration by the County Board.</p>
+          <p>Please let me know what additional information you need and when we might schedule a meeting to discuss this further.</p>
+          <p>Thank you,<br>[Your Name]<br>[Your Contact Information]</p>
+        </div>
+
+        <div id="draft-letter-block" style="display: none; background: #fff; border-radius: 10px; border: 1px solid #ddd; padding: 20px; margin-top: 20px;">
+          <h4>Draft Email to Corporation Counsel</h4>
+          <p>Dear Corporation Counsel Pabellón,</p>
+          <p>I am working with Supervisor <strong><span id="draft-supervisor"></span></strong> from District <strong><span id="draft-district"></span></strong> to draft an ordinance/resolution regarding [brief description of issue].</p>
+          <p>The proposed legislation would:<br> - [Key provision 1]<br> - [Key provision 2]<br> - [Key provision 3]</p>
+          <p>We would appreciate your assistance in drafting this legislation to ensure it meets all legal requirements and is properly formatted for consideration by the County Board.</p>
+          <p>Please let me know what additional information you need and when we might schedule a meeting to discuss this further.</p>
+          <p>Thank you,<br>[Your Name]</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-                </div>
-                
-                <div class="flow-step">
-                    <span class="step-number">2</span>
-                    <div class="step-header">
-                        <h4 class="step-title">Draft with Corporation Counsel</h4>
-                        <span class="step-status">Upcoming</span>
-                    </div>
-                    <div class="step-content">
-                        Work with the Corporation Counsel's office to draft proper legal language for your ordinance or resolution.
-                    </div>
-                    <div class="step-actions">
-                        <button class="action-btn primary" onclick="showDraftingTemplate()">View Drafting Template</button>
-                        <button class="action-btn secondary">Drafting Tips</button>
-                    </div>
-                    <div class="drafting-template" style="display: none; margin-top: 20px; background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                        <h5>Corporation Counsel Contact:</h5>
-                        <p><strong>Carlos A. Pabellón</strong><br>
-                        Dane County Corporation Counsel<br>
-                        Room 419, City-County Building<br>
-                        210 Martin Luther King Jr. Blvd<br>
-                        Madison, WI 53703<br>
-                        Phone: (608) 266-4355</p>
-                        
-                        <h5 style="margin-top: 20px;">Email Template:</h5>
-                        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd;">
-                            <p><strong>Subject:</strong> Request for Legislative Drafting Assistance - [Your Topic]</p>
-                            <p><strong>Dear Corporation Counsel Pabellón,</strong></p>
-                            <p>I am working with Supervisor [Name] from District [#] to draft a [ordinance/resolution] regarding [brief description of issue].</p>
-                            <p>The proposed legislation would:</p>
-                            <ul>
-                                <li>[Key provision 1]</li>
-                                <li>[Key provision 2]</li>
-                                <li>[Key provision 3]</li>
-                            </ul>
-                            <p>We would appreciate your assistance in drafting this legislation to ensure it meets all legal requirements and is properly formatted for consideration by the County Board.</p>
-                            <p>Please let me know what additional information you need and when we might schedule a meeting to discuss this further.</p>
-                            <p>Thank you,<br>[Your Name]<br>[Your Contact Information]</p>
-                        </div>
-                    </div>
-                </div>
-                
                 <div class="flow-step">
                     <span class="step-number">3</span>
                     <div class="step-header">
